@@ -27,44 +27,8 @@
 <tr>
 <td width="50%" valign="top">
 
-**[500lines](https://github.com/kaozbf/500lines)**<br>
-<sub>500 Lines or Less</sub><br>
-
-
-</td> <td width="50%" valign="top">
-
-**[demo](https://github.com/kaozbf/demo)**<br>
-<sub>这里汇聚了微信公众号【运维咖啡吧】文章中所讲到的各种demo</sub><br>
-
-
-</td>
-</tr>
-</table>
-
-<table>
-<tr>
-<td width="50%" valign="top">
-
-**[HowToCook](https://github.com/kaozbf/HowToCook)**<br>
-<sub>Programmer&#x27;s guide about how to cook at home.</sub><br>
-
-
-</td> <td width="50%" valign="top">
-
-**[mcp-agent-graph](https://github.com/kaozbf/mcp-agent-graph)**<br>
-<sub>Agent Graph is a Multi-Agent System built on the principles of Context Engineering</sub><br>
-
-
-</td>
-</tr>
-</table>
-
-<table>
-<tr>
-<td width="50%" valign="top">
-
-**[minimind](https://github.com/kaozbf/minimind)**<br>
-<sub>🧠 Train a 64M-parameter LLM from scratch in just 2h!</sub><br>
+**[new-api-docker](https://github.com/kaozbf/new-api-docker)**<br>
+<sub>A unified AI model hub for aggregation &amp; distribution. It supports cross-converting various LLMs into OpenAI-compatible, Claude-compatible, or Gemini-compatible formats. A centralized gateway for personal and enterprise model management.</sub><br>
 
 
 </td> <td width="50%" valign="top">
@@ -81,8 +45,26 @@
 <tr>
 <td width="50%" valign="top">
 
-**[new-api-docker](https://github.com/kaozbf/new-api-docker)**<br>
-<sub>A unified AI model hub for aggregation &amp; distribution. It supports cross-converting various LLMs into OpenAI-compatible, Claude-compatible, or Gemini-compatible formats. A centralized gateway for personal and enterprise model management.</sub><br>
+**[teamEvolver](https://github.com/kaozbf/teamEvolver)**<br>
+<sub><i>（暂无描述）</i></sub><br>
+
+
+</td> <td width="50%" valign="top">
+
+**[HowToCook](https://github.com/kaozbf/HowToCook)**<br>
+<sub>Programmer&#x27;s guide about how to cook at home.</sub><br>
+
+
+</td>
+</tr>
+</table>
+
+<table>
+<tr>
+<td width="50%" valign="top">
+
+**[minimind](https://github.com/kaozbf/minimind)**<br>
+<sub>🧠 Train a 64M-parameter LLM from scratch in just 2h!</sub><br>
 
 
 </td> <td width="50%" valign="top">
@@ -99,8 +81,8 @@
 <tr>
 <td width="50%" valign="top">
 
-**[PandaWiki](https://github.com/kaozbf/PandaWiki)**<br>
-<sub>PandaWiki 是一款 AI 大模型驱动的开源知识库搭建系统，帮助你快速构建智能化的 产品文档、技术文档、FAQ、博客系统，借助大模型的力量为你提供 AI 创作、AI 问答、AI 搜索等能力。</sub><br>
+**[mcp-agent-graph](https://github.com/kaozbf/mcp-agent-graph)**<br>
+<sub>Agent Graph is a Multi-Agent System built on the principles of Context Engineering</sub><br>
 
 
 </td> <td width="50%" valign="top">
@@ -117,8 +99,8 @@
 <tr>
 <td width="50%" valign="top">
 
-**[svg-frontend](https://github.com/kaozbf/svg-frontend)**<br>
-<sub>基于当下最强大模型的在线 SVG 生成、编辑、下载站点</sub><br>
+**[PandaWiki](https://github.com/kaozbf/PandaWiki)**<br>
+<sub>PandaWiki 是一款 AI 大模型驱动的开源知识库搭建系统，帮助你快速构建智能化的 产品文档、技术文档、FAQ、博客系统，借助大模型的力量为你提供 AI 创作、AI 问答、AI 搜索等能力。</sub><br>
 
 
 </td> <td width="50%" valign="top">
@@ -135,8 +117,26 @@
 <tr>
 <td width="50%" valign="top">
 
-**[teamEvolver](https://github.com/kaozbf/teamEvolver)**<br>
-<sub><i>（暂无描述）</i></sub><br>
+**[demo](https://github.com/kaozbf/demo)**<br>
+<sub>这里汇聚了微信公众号【运维咖啡吧】文章中所讲到的各种demo</sub><br>
+
+
+</td> <td width="50%" valign="top">
+
+**[svg-frontend](https://github.com/kaozbf/svg-frontend)**<br>
+<sub>基于当下最强大模型的在线 SVG 生成、编辑、下载站点</sub><br>
+
+
+</td>
+</tr>
+</table>
+
+<table>
+<tr>
+<td width="50%" valign="top">
+
+**[500lines](https://github.com/kaozbf/500lines)**<br>
+<sub>500 Lines or Less</sub><br>
 
 
 </td> <td width="50%" valign="top"></td>
