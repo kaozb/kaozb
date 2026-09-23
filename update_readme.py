@@ -39,8 +39,10 @@ def api(url):
 
 
 def fetch_org_repos():
-    """拉取组织仓库，并逐仓库补全语言/续页信息。"""
-    repos = api(f"https://api.github.com/orgs/{ORG}/repos?per_page=100&sort=updated")
+    """拉取组织仓库，并逐仓库补全语言/续页信息。
+
+    排序：按最近更新时间倒序（越新的越靠前）。"""
+    repos = api(f"https://api.github.com/orgs/{ORG}/repos?per_page=100&sort=pushed")
     out = []
     for r in repos:
         name = r["name"]
@@ -54,10 +56,12 @@ def fetch_org_repos():
             "desc": (d.get("description") or r.get("description") or "").strip(),
             "lang": d.get("language") or "",
             "url": d.get("html_url") or f"https://github.com/{ORG}/{name}",
+            "pushed_at": d.get("pushed_at") or r.get("pushed_at") or "",
             "stars": d.get("stargazers_count", 0),
             "forks": d.get("forks_count", 0),
         })
-    out.sort(key=lambda x: x["name"].lower())
+    # 最近更新时间倒序；缺失时间的排到最后
+    out.sort(key=lambda x: x["pushed_at"], reverse=True)
     return out
 
 
