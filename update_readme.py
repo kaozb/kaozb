@@ -1,0 +1,130 @@
+#!/usr/bin/env python3
+"""自动生成 GitHub 主页 README（kaozb/kaozb）。
+
+数据来源：GitHub REST API。输出 README.md，含：
+  - 动态徽章（shields.io，浏览器端实时取数）
+  - 活跃状态卡片（streak-stats）
+  - 组织 kaozbf 的仓库清单（按分类自动归组）
+
+在 GitHub Actions 中由 org 的 GITHUB_TOKEN 调用；本地运行需设置 GITHUB_TOKEN。
+"""
+import json
+import os
+import urllib.request
+
+USER = "kaozb"
+ORG = "kaozbf"
+TOKEN = os.environ.get("GITHUB_TOKEN", "")
+
+# 分类关键词 → 分类名。按仓库名/描述匹配，先匹配到的优先。
+CATEGORIES = [
+    ("AI / LLM", ["minimind", "mcp", "purechat", "new-api", "system-prompts", "gpt", "llm", "agent", "ai-"]),
+    ("文档 / 知识", ["howtocook", "pandawiki", "wiki", "docs", "book", "knowledge", "cook"]),
+    ("开发 / 工具", ["monkeycode", "500lines", "svg", "docker", "shell", "tool", "demo", "cli"]),
+]
+OTHER = "其他"
+
+
+def api(url):
+    req = urllib.request.Request(url, headers={
+        "Accept": "application/vnd.github+json",
+        "User-Agent": "kaozb-profile-bot",
+        **({"Authorization": f"Bearer {TOKEN}"} if TOKEN else {}),
+    })
+    with urllib.request.urlopen(req, timeout=30) as r:
+        return json.load(r)
+
+
+def fetch_org_repos():
+    repos = api(f"https://api.github.com/orgs/{ORG}/repos?per_page=100&sort=updated")
+    out = []
+    for r in repos:
+        name = r["name"]
+        # 列表接口不返回 parent/language，逐仓库取详情
+        try:
+            d = api(f"https://api.github.com/repos/{ORG}/{name}")
+        except Exception:
+            d = r
+        parent = (d.get("parent") or {}).get("full_name", "")
+        out.append({
+            "name": name,
+            "desc": (d.get("description") or "").strip(),
+            "lang": d.get("language") or "",
+            "parent": parent,
+            "url": d.get("html_url") or f"https://github.com/{ORG}/{name}",
+        })
+    out.sort(key=lambda x: x["name"].lower())
+    return out
+
+
+def categorize(repos):
+    groups = {name: [] for name, _ in CATEGORIES}
+    groups[OTHER] = []
+    for repo in repos:
+        hay = (repo["name"] + " " + repo["desc"]).lower()
+        placed = False
+        for cat, kws in CATEGORIES:
+            if any(k in hay for k in kws):
+                groups[cat].append(repo)
+                placed = True
+                break
+        if not placed:
+            groups[OTHER].append(repo)
+    return groups
+
+
+def render(repos):
+    groups = categorize(repos)
+    lines = []
+    lines.append(f"# {USER}")
+    lines.append("")
+    lines.append("<p>")
+    lines.append(f'  <a href="https://github.com/{USER}?tab=followers"><img src="https://img.shields.io/github/followers/{USER}?label=Followers&style=flat-square&color=1f6feb" alt="followers"></a>')
+    lines.append(f'  <a href="https://github.com/{USER}?tab=repositories"><img src="https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fapi.github.com%2Fusers%2F{USER}&query=%24.public_repos&label=Repos&style=flat-square&color=2ea043" alt="repos"></a>')
+    lines.append(f'  <a href="https://github.com/{ORG}"><img src="https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fapi.github.com%2Forgs%2F{ORG}&query=%24.public_repos&label={ORG}%20repos&style=flat-square&color=8957e5" alt="org repos"></a>')
+    lines.append(f'  <img src="https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fapi.github.com%2Fusers%2F{USER}&query=%24.created_at&label=Joined&style=flat-square&color=6e7681" alt="joined">')
+    lines.append("</p>")
+    lines.append("")
+    lines.append("## 📈 活跃状态")
+    lines.append("")
+    lines.append("<p>")
+    lines.append(f'  <img src="https://github-readme-streak-stats.herokuapp.com/?user={USER}&hide_border=true" alt="streak stats">')
+    lines.append("</p>")
+    lines.append("")
+    lines.append(f"## 🏢 组织 {ORG}")
+    lines.append("")
+    lines.append("<p>")
+    lines.append(f'  <a href="https://github.com/{ORG}"><img src="https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fapi.github.com%2Forgs%2F{ORG}&query=%24.public_repos&label=Public%20Repos&style=for-the-badge&color=1f6feb" alt="public repos"></a>')
+    lines.append(f'  <img src="https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fapi.github.com%2Forgs%2F{ORG}&query=%24.created_at&label=Created&style=for-the-badge&color=2ea043" alt="created">')
+    lines.append(f'  <img src="https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fapi.github.com%2Forgs%2F{ORG}&query=%24.followers&label=Followers&style=for-the-badge&color=8957e5" alt="followers">')
+    lines.append("</p>")
+    lines.append("")
+    lines.append(f"共收录 **{len(repos)}** 个仓库（本清单由 GitHub Actions 定时自动更新）：")
+    lines.append("")
+    lines.append("| 分类 | 项目 |")
+    lines.append("| --- | --- |")
+    for cat, _ in CATEGORIES:
+        items = groups.get(cat) or []
+        if not items:
+            continue
+        cell = " · ".join(f'[{r["name"]}]({r["url"]})' for r in items)
+        lines.append(f"| {cat} | {cell} |")
+    if groups.get(OTHER):
+        cell = " · ".join(f'[{r["name"]}]({r["url"]})' for r in groups[OTHER])
+        lines.append(f"| {OTHER} | {cell} |")
+    lines.append("")
+    lines.append("<!-- AUTO-GENERATED by update-readme.yml，请勿手动编辑本文件 -->")
+    lines.append("")
+    return "\n".join(lines)
+
+
+def main():
+    repos = fetch_org_repos()
+    content = render(repos)
+    with open("README.md", "w", encoding="utf-8") as f:
+        f.write(content)
+    print(f"README.md 已生成，共 {len(repos)} 个仓库")
+
+
+if __name__ == "__main__":
+    main()
