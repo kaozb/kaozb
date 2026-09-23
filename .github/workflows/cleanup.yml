@@ -1,0 +1,52 @@
+name: Cleanup old runs & deployments
+
+# 每天自动清理「昨天及之前」的 Actions workflow run 与 deployment 记录。
+# 保留策略：只保留今天（UTC）产生的记录。
+on:
+  schedule:
+    # 每天 18:00 UTC（北京时间次日 02:00）执行，避开整点高峰
+    - cron: "0 18 * * *"
+  workflow_dispatch:
+    inputs:
+      days:
+        description: "保留天数（0 = 只保留今天，删除昨天及之前）"
+        required: false
+        default: "0"
+      dry_run:
+        description: "只统计不删除（true/false）"
+        required: false
+        default: "false"
+
+# 用环境 action 里的 TOKEN 才能跨仓库删除其它仓库的记录
+concurrency:
+  group: cleanup-old
+  cancel-in-progress: false
+
+jobs:
+  cleanup:
+    runs-on: ubuntu-latest
+    environment: action
+    timeout-minutes: 350
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Run cleanup
+        env:
+          # 优先用 environment「action」中名为 TOKEN 的 secret（PAT，含 repo + workflow 权限）
+          GITHUB_TOKEN: ${{ secrets.TOKEN }}
+          RETENTION_DAYS: ${{ github.event.inputs.days || '0' }}
+          DRY_RUN: ${{ github.event.inputs.dry_run == 'true' && '1' || '' }}
+          CONCURRENCY: "8"
+        run: |
+          set -o pipefail
+          if [ -z "${GITHUB_TOKEN}" ]; then
+            echo "::error::environment action 中的 secret TOKEN 为空，请在仓库 Settings → Environments → action 添加名为 TOKEN 的 secret"
+            exit 1
+          fi
+          python3 cleanup.py ${DRY_RUN:+--dry-run} --days "${RETENTION_DAYS}"
