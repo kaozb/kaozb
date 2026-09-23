@@ -49,4 +49,4 @@ jobs:
             echo "::error::environment action 中的 secret TOKEN 为空，请在仓库 Settings → Environments → action 添加名为 TOKEN 的 secret"
             exit 1
           fi
-          python3 cleanup.py ${DRY_RUN:+--dry-run} --days "${RETENTION_DAYS}"
+          python3 cleanup-bot/cleanup.py ${DRY_RUN:+--dry-run} --days "${RETENTION_DAYS}"
