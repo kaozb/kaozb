@@ -21,7 +21,7 @@
   <img src="https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fapi.github.com%2Forgs%2Fkaozbf&query=%24.followers&label=Followers&style=for-the-badge&color=8957e5" alt="followers">
 </p>
 
-共收录 **13** 个仓库（由 GitHub Actions 定时自动更新）：
+共收录 **12** 个仓库（由 GitHub Actions 定时自动更新）：
 
 <table>
 <tr>
@@ -117,29 +117,17 @@
 <tr>
 <td width="50%" valign="top">
 
-**[demo](https://github.com/kaozbf/demo)**<br>
-<sub>这里汇聚了微信公众号【运维咖啡吧】文章中所讲到的各种demo</sub><br>
-
-
-</td> <td width="50%" valign="top">
-
 **[svg-frontend](https://github.com/kaozbf/svg-frontend)**<br>
 <sub>基于当下最强大模型的在线 SVG 生成、编辑、下载站点</sub><br>
 
 
-</td>
-</tr>
-</table>
-
-<table>
-<tr>
-<td width="50%" valign="top">
+</td> <td width="50%" valign="top">
 
 **[500lines](https://github.com/kaozbf/500lines)**<br>
 <sub>500 Lines or Less</sub><br>
 
 
-</td> <td width="50%" valign="top"></td>
+</td>
 </tr>
 </table>
 
