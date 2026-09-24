@@ -1,0 +1,29 @@
+name: Sync Forks
+
+on:
+  schedule:
+    # 每天 23:50 UTC（北京时间次日 07:50），比 README 刷新（00:00 UTC）早 10 分钟
+    - cron: "50 23 * * *"
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: "只打印计划不执行（1=是，0=否）"
+        required: false
+        default: "0"
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    environment: action
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Sync all forks from upstream (no force push)
+        env:
+          TOKEN: ${{ secrets.TOKEN }}
+          ORG: kaozbf
+          DRY_RUN: ${{ github.event.inputs.dry_run || '0' }}
+        run: bash sync_forks.sh
