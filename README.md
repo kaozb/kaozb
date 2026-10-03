@@ -21,7 +21,25 @@
   <img src="https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fapi.github.com%2Forgs%2Fkaozbf&query=%24.followers&label=Followers&style=for-the-badge&color=8957e5" alt="followers">
 </p>
 
-共收录 **12** 个仓库（由 GitHub Actions 定时自动更新）：
+共收录 **14** 个仓库（由 GitHub Actions 定时自动更新）：
+
+<table>
+<tr>
+<td width="50%" valign="top">
+
+**[GitNexus](https://github.com/kaozbf/GitNexus)**<br>
+<sub>GitNexus: The Zero-Server Code Intelligence Engine</sub><br>
+
+
+</td> <td width="50%" valign="top">
+
+**[HelloGitHub](https://github.com/kaozbf/HelloGitHub)**<br>
+<sub>:octocat: 分享 GitHub 上有趣、入门级的开源项目。Share interesting, entry-level open source projects on GitHub.</sub><br>
+
+
+</td>
+</tr>
+</table>
 
 <table>
 <tr>
