@@ -21,7 +21,25 @@
   <img src="https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fapi.github.com%2Forgs%2Fkaozbf&query=%24.followers&label=Followers&style=for-the-badge&color=8957e5" alt="followers">
 </p>
 
-共收录 **20** 个仓库（由 GitHub Actions 定时自动更新）：
+共收录 **22** 个仓库（由 GitHub Actions 定时自动更新）：
+
+<table>
+<tr>
+<td width="50%" valign="top">
+
+**[gitlabmr](https://github.com/kaozbf/gitlabmr)**<br>
+<sub>gitlabmr</sub><br>
+<img src="https://img.shields.io/badge/Python-3572A5?style=flat-square&logoColor=white" alt="Python" height="16">
+
+</td> <td width="50%" valign="top">
+
+**[pr-agent](https://github.com/kaozbf/pr-agent)**<br>
+<sub>🚀 PR Agent: The Original Open-Source PR Reviewer. This project is not the Qodo free tier.</sub><br>
+
+
+</td>
+</tr>
+</table>
 
 <table>
 <tr>
