@@ -27,15 +27,15 @@
 <tr>
 <td width="50%" valign="top">
 
-**[gitlabmr](https://github.com/kaozbf/gitlabmr)**<br>
-<sub>gitlabmr</sub><br>
-<img src="https://img.shields.io/badge/Python-3572A5?style=flat-square&logoColor=white" alt="Python" height="16">
+**[windowTAG](https://github.com/kaozbf/windowTAG)**<br>
+<sub>windosTAG</sub><br>
+<img src="https://img.shields.io/badge/C++-f34b7d?style=flat-square&logoColor=white" alt="C++" height="16">
 
 </td> <td width="50%" valign="top">
 
-**[pr-agent](https://github.com/kaozbf/pr-agent)**<br>
-<sub>🚀 PR Agent: The Original Open-Source PR Reviewer. This project is not the Qodo free tier.</sub><br>
-
+**[gitlabmr](https://github.com/kaozbf/gitlabmr)**<br>
+<sub>gitlabmr</sub><br>
+<img src="https://img.shields.io/badge/Python-3572A5?style=flat-square&logoColor=white" alt="Python" height="16">
 
 </td>
 </tr>
@@ -45,15 +45,15 @@
 <tr>
 <td width="50%" valign="top">
 
-**[harness2](https://github.com/kaozbf/harness2)**<br>
-<sub><i>（暂无描述）</i></sub><br>
+**[pr-agent](https://github.com/kaozbf/pr-agent)**<br>
+<sub>🚀 PR Agent: The Original Open-Source PR Reviewer. This project is not the Qodo free tier.</sub><br>
 
 
 </td> <td width="50%" valign="top">
 
-**[windowTAG](https://github.com/kaozbf/windowTAG)**<br>
-<sub>windosTAG</sub><br>
-<img src="https://img.shields.io/badge/C++-f34b7d?style=flat-square&logoColor=white" alt="C++" height="16">
+**[harness2](https://github.com/kaozbf/harness2)**<br>
+<sub><i>（暂无描述）</i></sub><br>
+
 
 </td>
 </tr>
